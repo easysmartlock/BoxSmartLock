@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-toolbar>
+    <div class="ion-text-center">
+      <img class="logo" src="/assets/images/logo.png" />
+    </div>
+    <ion-buttons slot="end">
+      <ion-back-button [text]="'Retour'"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="ion-padding-horizontal" id="container">
+    <h4 class="mb-3 mt-3">
+      Enregistrer
+    </h4>
+    <form>
+      <ion-item>
+        <ion-label position="stacked">
+          Nom
+        </ion-label>
+        <ion-input [(ngModel)]="nom" name="nom"></ion-input>
+      </ion-item> 
+      <ion-item>
+        <ion-label position="stacked">
+          Prénom
+        </ion-label>
+        <ion-input [(ngModel)]="prenom" name="prenom"></ion-input>
+      </ion-item> 
+      <ion-item>
+        <ion-label position="stacked">
+          Email
+        </ion-label>
+        <ion-input [(ngModel)]="email" name="email"></ion-input>
+      </ion-item> 
+      <ion-item>
+        <ion-label position="stacked">
+          Mot de passe
+        </ion-label>
+        <ion-input name="password" [(ngModel)]="password" type="password"></ion-input>
+      </ion-item>   
+      <div class="mt-5">
+        <ion-button (click)="do()" expand="block" color="primary">
+          Valider
+        </ion-button>
+      </div>   
+    </form>
+    <p class="mt-5">
+      <app-version></app-version> 
+    </p>
+  </div>
+</ion-content>

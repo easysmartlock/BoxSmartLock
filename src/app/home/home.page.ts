@@ -9,4 +9,8 @@ export class HomePage {
 
   constructor() {}
 
+  go(route:string): void {
+    
+  }
+
 }

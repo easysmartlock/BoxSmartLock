@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar>
+    <div class="ion-text-center">
+      <img class="logo" src="/assets/images/logo.png" />
+    </div>
+    <ion-buttons slot="end">
+      <ion-back-button [text]="'Retour'"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-progress-bar *ngIf="loading == true" type="indeterminate"></ion-progress-bar>
+  <ion-backdrop *ngIf="loading == true" tappable="false"></ion-backdrop>
+  <div class="ion-padding-horizontal" id="container">
+    <h4 class="mb-3 mt-3">
+      Mot de passe
+    </h4>
+    <form>
+      <ion-item>
+        <ion-label position="stacked">
+          Votre Email
+        </ion-label>
+        <ion-input [(ngModel)]="email" name="email" type="email"></ion-input>
+      </ion-item> 
+      <div class="mt-5">
+        <ion-button (click)="do()" expand="block" color="primary">
+          Valider
+        </ion-button>
+      </div>   
+    </form>
+    <p class="mt-3 text-center">
+      &nbsp;
+    </p>
+    <p class="mt-5 text-center">
+      Vous n'avez pas de compte ?
+      <a [routerLink]="['/home/inscription']">Inscription</a>
+    </p>
+    <p class="mt-1 text-center">
+      ou <a [routerLink]="['/home/connexion']">Connexion</a>
+    </p>
+    <p class="mt-5">
+      <app-version></app-version> 
+    </p>
+  </div>
+</ion-content>

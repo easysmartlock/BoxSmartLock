@@ -1,0 +1,64 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-menu-button slot="start"></ion-menu-button>
+    <div class="ion-text-center">
+      <img class="logo" src="/assets/images/logo.png" />
+    </div>
+    <ion-buttons slot="end">
+      V 1.0
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-progress-bar *ngIf="loading == true" type="indeterminate"></ion-progress-bar>
+  <div class="pt-3 px-2">
+    <h3 *ngIf="box != null">
+      Modifier la durée ouverture #{{ box.id }} - {{ box.nom }}
+    </h3>
+    <form #d="ngForm" class="mt-4">
+      <ion-item>
+        <ion-select name="duration" [(ngModel)]="duration" placeholder="La durée est en seconde" required>
+          <ion-select-option value="001">1s</ion-select-option>
+          <ion-select-option value="002">2s</ion-select-option>
+          <ion-select-option value="003">3s</ion-select-option>
+          <ion-select-option value="004">4s</ion-select-option>
+          <ion-select-option value="005">5s</ion-select-option>
+          <ion-select-option value="006">6s</ion-select-option>
+          <ion-select-option value="007">7s</ion-select-option>
+          <ion-select-option value="008">8s</ion-select-option>
+          <ion-select-option value="009">9s</ion-select-option>
+          <ion-select-option value="010">10s</ion-select-option>
+          <ion-select-option value="011">11s</ion-select-option>
+          <ion-select-option value="012">12s</ion-select-option>
+          <ion-select-option value="013">13s</ion-select-option>
+          <ion-select-option value="014">14s</ion-select-option>
+          <ion-select-option value="015">15s</ion-select-option>
+          <ion-select-option value="016">16s</ion-select-option>
+          <ion-select-option value="017">17s</ion-select-option>
+          <ion-select-option value="018">18s</ion-select-option>
+          <ion-select-option value="019">19s</ion-select-option>
+          <ion-select-option value="020">20s</ion-select-option>
+          <ion-select-option value="021">21s</ion-select-option>
+          <ion-select-option value="022">22s</ion-select-option>
+          <ion-select-option value="023">23s</ion-select-option>  
+          <ion-select-option value="024">24s</ion-select-option>
+          <ion-select-option value="025">25s</ion-select-option>
+          <ion-select-option value="026">26s</ion-select-option>
+          <ion-select-option value="027">27s</ion-select-option>
+          <ion-select-option value="028">28s</ion-select-option>
+          <ion-select-option value="029">29s</ion-select-option>
+          <ion-select-option value="030">30s</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <div class="mt-4">
+        <ion-button [disabled]="d.invalid" (click)="valide()" expand="block">
+          Enregistrer
+        </ion-button>
+      </div>
+    </form>
+    <ion-button *ngIf="box" expand="block" class="mt-4" [routerLink]="['/dashboard/box/' + box.id ]">
+      Retour
+    </ion-button>
+  </div>
+</ion-content>
