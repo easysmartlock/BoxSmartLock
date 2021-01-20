@@ -43,6 +43,14 @@ const routes: Routes = [
   {
     path: 'easy/update-access',
     loadChildren: () => import('./easies/update-access/update-access.module').then( m => m.UpdateAccessPageModule)
+  },
+  {
+    path: 'easy/duration',
+    loadChildren: () => import('./easies/duration/duration.module').then( m => m.DurationPageModule)
+  },
+  {
+    path: 'easy/list-phone',
+    loadChildren: () => import('./easies/list-phone/list-phone.module').then( m => m.ListPhonePageModule)
   }
 ];
 

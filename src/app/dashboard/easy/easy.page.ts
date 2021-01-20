@@ -49,13 +49,20 @@ export class EasyPage implements OnInit {
       this.router.navigate(['/dashboard/easy/add-phone/' + this.id]);
     }
     if (this.action === this.actions.actionAccess) {
-      this.router.navigate(['/dashboard/easy/access/' + this.id]);
+      this.router.navigate(['/dashboard/easy/update-access/' + this.id]);
     }
     if (this.action === this.actions.actionDuration) {
       this.router.navigate(['/dashboard/easy/duration/' + this.id]);
     }
     if (this.action === this.actions.actionListeTel) {
       this.loading = true;
+      this.service.requestListPhone(this.id).then(() => {
+        this.loading = false;
+        this.router.navigate(['/dashboard/easy/list-phone/' + this.id]);
+      })
+      .catch((e) => {
+        this.loading = false;
+      });
     }
   }
 

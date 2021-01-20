@@ -52,4 +52,21 @@ export class EasyService {
       duration
     }).toPromise();
   }
+
+  requestListPhone(id: string): Promise<Response> {
+    return this.http.post<Response>(`${environment.apiUrl}/easies/request-list-phone`, {
+      id
+    }).toPromise();
+  }
+
+  getPhones(id: string): Promise<Response> {
+    return this.http.get<Response>(`${environment.apiUrl}/easies/phones?id=${id}`).toPromise();
+  }
+
+  remove(id, phoneId): Promise<Response> {
+    return this.http.post<Response>(`${environment.apiUrl}/easies/delete-phone`, {
+      id,
+      phoneId
+    }).toPromise();
+  }
 }
