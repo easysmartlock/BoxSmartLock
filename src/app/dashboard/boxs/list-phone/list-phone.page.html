@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-menu-button slot="start"></ion-menu-button>
+    <div class="ion-text-center">
+      <img class="logo" src="/assets/images/logo.png" />
+    </div>
+    <ion-buttons slot="end">
+      V 1.0
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-progress-bar *ngIf="loading == true" type="indeterminate"></ion-progress-bar>
+  <div class="pt-3 px-2">
+    <h3 *ngIf="box != null">
+      Liste des téléphones #{{ box.id }} - {{ box.nom }}
+    </h3>
+
+    <ion-list>
+      <ion-item *ngFor="let phone of phones">
+        <h3>
+          {{ phone.telephone == null ? 'Aucun' : phone.telephone }}
+        </h3>
+        <ion-button *ngIf="phone.telephone != null" slot="end" (click)="remove(phone.id)" color="danger">
+          Supprimer
+        </ion-button>
+      </ion-item>
+    </ion-list>
+    
+    <ion-button *ngIf="box" expand="block" class="mt-4" [routerLink]="['/dashboard/box/' + box.id ]">
+      Retour
+    </ion-button>
+  </div>
+</ion-content>

@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { ActionSheetController, PopoverController } from '@ionic/angular';
 import { Response } from '../models/response.model';
 import { BoxService } from '../services/box.service';
+import { EasyService } from '../services/easy.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -18,7 +19,8 @@ export class DashboardPage implements OnInit {
     private popover: PopoverController,
     private actionSheetController: ActionSheetController,
     private boxService: BoxService,
-    private router: Router
+    private router: Router,
+    private easyService: EasyService
   ) { }
 
   ngOnInit() {
@@ -53,6 +55,30 @@ export class DashboardPage implements OnInit {
   }
 
   listeEasy(){
+    this.loading = true;
+    this.easyService.get().then(async (value: Response) => {
+      if (value.etat === 'OK') {
+        this.loading = false;
+        const buttons = [];
+        value.data.forEach(element => {
+          buttons.push({
+            text: '#' + element.id + ' - '  + element.nom,
+            handler: () => {
+              this.router.navigate(['/dashboard/easy/' + element.id]);
+            }
+          });
+        });
+        const actionSheet = await this.actionSheetController.create({
+          header: 'SerrureSmartLock',
+          cssClass: 'box-custom-class',
+          buttons
+        });
+        await actionSheet.present();
+      }
+    })
+    .catch((e) => {
+
+    });
   }
 
 }

@@ -13,8 +13,8 @@
 <ion-content>
   <ion-progress-bar *ngIf="loading == true" type="indeterminate"></ion-progress-bar>
   <div class="pt-3 px-2">
-    <h3 *ngIf="box != null">
-      BoxSmartLock #{{ box.id }} - {{ box.nom }}
+    <h3 *ngIf="easy != null">
+      EasySmartLock #{{ easy.identifiant }} - {{ easy.nom }}
     </h3>
     <div class="mt-4">
       <ion-label>Choisir une action</ion-label>

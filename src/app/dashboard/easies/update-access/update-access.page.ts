@@ -1,63 +1,67 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AlertService } from 'src/app/services/alert.service';
-import { BoxService } from 'src/app/services/box.service';
+import { EasyService } from 'src/app/services/easy.service';
 import { Response } from 'src/app/models/response.model';
 
 @Component({
-  selector: 'app-duration',
-  templateUrl: './duration.page.html',
-  styleUrls: ['./duration.page.scss'],
+  selector: 'app-update-access',
+  templateUrl: './update-access.page.html',
+  styleUrls: ['./update-access.page.scss'],
 })
-export class DurationPage implements OnInit {
+export class UpdateAccessPage implements OnInit {
 
-  box: any = null ;
-  loading = false;
-  id: any;
-  duration = '';
+  easy: any;
+  id: string;
+  loading: boolean;
+  action: string;
 
   constructor(
-    private service: BoxService,
+    private service: EasyService,
     private route: ActivatedRoute,
     private alert: AlertService
   ) { }
 
   ngOnInit() {
+    this.loading = false;
   }
 
   ionViewDidEnter() {
     this.loading = true;
-    this.box = null ;
+    this.easy = null ;
     this.id = this.route.snapshot.paramMap.get('id');
     this.service.find(this.id).then((output: Response) => {
       this.loading = false;
       if (output.etat === 'OK') {
         const data = output.data;
         if (Object.keys(data).length > 0) {
-          this.box = data;
+          this.easy = data;
         }
       }
     })
     .catch((e) => {
-      console.log(e);
-      this.loading = false;
+
     });
   }
 
   valide() {
-    if (this.duration !== '') {
-      this.service.editDuration(this.id, this.duration).then((output: Response) => {
+    if (this.action !== null) {
+      this.loading = true;
+      this.service.editAccess(this.id, this.action).then((output: Response) => {
+        this.loading = false;
         if (output.etat === 'OK') {
-          this.alert.presentAlert('Modification', '', 'La durée ouverture a bien été modifié');
-        } else {
-          this.alert.presentAlert('Modification', '', 'Une erreur est survenue');
+          if (output.data === true) {
+            this.alert.presentAlert('Modification', '', 'Access modifier sur la EasySmartLock');
+          } else {
+            this.alert.presentAlert('Modification', '', 'Une erreur est survenue');
+          }
         }
       })
       .catch((e) => {
         console.log(e);
+        this.loading = false;
         this.alert.presentAlert('Modification', '', 'Une erreur est survenue');
       });
     }
   }
-
 }

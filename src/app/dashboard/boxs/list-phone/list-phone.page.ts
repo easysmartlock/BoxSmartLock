@@ -5,16 +5,16 @@ import { BoxService } from 'src/app/services/box.service';
 import { Response } from 'src/app/models/response.model';
 
 @Component({
-  selector: 'app-duration',
-  templateUrl: './duration.page.html',
-  styleUrls: ['./duration.page.scss'],
+  selector: 'app-list-phone',
+  templateUrl: './list-phone.page.html',
+  styleUrls: ['./list-phone.page.scss'],
 })
-export class DurationPage implements OnInit {
+export class ListPhonePage implements OnInit {
 
-  box: any = null ;
+  id: string;
   loading = false;
-  id: any;
-  duration = '';
+  box: any;
+  phones: any[];
 
   constructor(
     private service: BoxService,
@@ -23,11 +23,13 @@ export class DurationPage implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.loading = false;
   }
 
   ionViewDidEnter() {
     this.loading = true;
     this.box = null ;
+    this.phones = [];
     this.id = this.route.snapshot.paramMap.get('id');
     this.service.find(this.id).then((output: Response) => {
       this.loading = false;
@@ -39,25 +41,31 @@ export class DurationPage implements OnInit {
       }
     })
     .catch((e) => {
-      console.log(e);
+      this.loading = false;
+    });
+
+    this.service.getPhones(this.id).then((output: Response) => {
+      this.loading = false;
+      if (output.etat === 'OK') {
+        this.phones = output.data;
+      }
+    })
+    .catch((e) => {
       this.loading = false;
     });
   }
 
-  valide() {
-    if (this.duration !== '') {
-      this.service.editDuration(this.id, this.duration).then((output: Response) => {
-        if (output.etat === 'OK') {
-          this.alert.presentAlert('Modification', '', 'La durée ouverture a bien été modifié');
-        } else {
-          this.alert.presentAlert('Modification', '', 'Une erreur est survenue');
-        }
-      })
-      .catch((e) => {
-        console.log(e);
-        this.alert.presentAlert('Modification', '', 'Une erreur est survenue');
-      });
-    }
+  remove(id) {
+    this.loading = true;
+    this.service.remove(this.id, id).then((output: Response) => {
+      this.loading = false;
+      if (output.etat === 'OK' && output.data.length > 0) {
+        this.phones = output.data;
+      }
+    })
+    .catch((e) => {
+      this.loading = false;
+    });
   }
 
 }

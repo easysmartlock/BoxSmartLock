@@ -6,7 +6,7 @@ import { Response } from '../models/response.model';
 @Injectable({
   providedIn: 'root'
 })
-export class BoxService {
+export class EasyService {
 
   static readonly actions = {
     actionAjoutTel: 'action_ajout_tel',
@@ -21,22 +21,15 @@ export class BoxService {
   ) { }
 
   get(): Promise<Response> {
-    return this.http.get<Response>(`${environment.apiUrl}/boxes`).toPromise();
+    return this.http.get<Response>(`${environment.apiUrl}/easies`).toPromise();
   }
 
   find(id): Promise<Response> {
-    return this.http.get<Response>(`${environment.apiUrl}/boxes/${id}`).toPromise();
-  }
-
-  remove(id, phoneId): Promise<Response> {
-    return this.http.post<Response>(`${environment.apiUrl}/boxes/delete-phone`, {
-      id,
-      phoneId
-    }).toPromise();
+    return this.http.get<Response>(`${environment.apiUrl}/easies/${id}`).toPromise();
   }
 
   addPhone(id: string, unlimited: boolean, debut: any , fin: any , prefix: string, telephone: string): Promise<Response> {
-    return this.http.post<Response>(`${environment.apiUrl}/boxes/add-phone`, {
+    return this.http.post<Response>(`${environment.apiUrl}/easies/add-phone`, {
       id,
       unlimited,
       debut,
@@ -47,27 +40,16 @@ export class BoxService {
   }
 
   editAccess(id: string, action: string): Promise<Response> {
-    return this.http.post<Response>(`${environment.apiUrl}/boxes/edit-access`, {
+    return this.http.post<Response>(`${environment.apiUrl}/easies/edit-access`, {
       id,
       action
     }).toPromise();
   }
 
   editDuration(id: string, duration: string): Promise<Response> {
-    return this.http.post<Response>(`${environment.apiUrl}/boxes/edit-duration`, {
+    return this.http.post<Response>(`${environment.apiUrl}/easies/edit-duration`, {
       id,
       duration
     }).toPromise();
   }
-
-  requestListPhone(id: string): Promise<Response> {
-    return this.http.post<Response>(`${environment.apiUrl}/boxes/request-list-phone`, {
-      id
-    }).toPromise();
-  }
-
-  getPhones(id: string): Promise<Response> {
-    return this.http.get<Response>(`${environment.apiUrl}/boxes/phones?id=${id}`).toPromise();
-  }
-
 }

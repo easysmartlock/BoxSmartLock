@@ -27,6 +27,22 @@ const routes: Routes = [
   {
     path: 'duration',
     loadChildren: () => import('./boxs/duration/duration.module').then( m => m.DurationPageModule)
+  },
+  {
+    path: 'list-phone',
+    loadChildren: () => import('./boxs/list-phone/list-phone.module').then( m => m.ListPhonePageModule)
+  },
+  {
+    path: 'easy',
+    loadChildren: () => import('./easy/easy.module').then( m => m.EasyPageModule)
+  },
+  {
+    path: 'easy/add-phone',
+    loadChildren: () => import('./easies/add-phone/add-phone.module').then( m => m.AddPhonePageModule)
+  },
+  {
+    path: 'easy/update-access',
+    loadChildren: () => import('./easies/update-access/update-access.module').then( m => m.UpdateAccessPageModule)
   }
 ];
 
