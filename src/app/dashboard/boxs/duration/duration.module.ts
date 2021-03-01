@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { DurationPageRoutingModule } from './duration-routing.module';
 
 import { DurationPage } from './duration.page';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    DurationPageRoutingModule
+    DurationPageRoutingModule,
+    SharedModule
   ],
   declarations: [DurationPage]
 })

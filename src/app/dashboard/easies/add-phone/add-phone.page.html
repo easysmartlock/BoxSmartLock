@@ -5,7 +5,7 @@
       <img class="logo" src="/assets/images/logo.png" />
     </div>
     <ion-buttons slot="end">
-      V 1.0
+      V<app-ver></app-ver>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -17,6 +17,18 @@
       Ajouter un nouveau numéro sur la serrure #{{ easy.identifiant }} - {{ easy.nom }}
     </h3>
     <form #addPhone="ngForm" class="mt-4">
+      <ion-item>
+        <ion-label position="floating">Nom de votre client</ion-label>
+        <ion-input required [(ngModel)]="nom" name="nom"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Choisir une position</ion-label>
+        <ion-select interface="popover" name="position" [(ngModel)]="position" required>
+          <ion-select-option *ngFor="let o of ordres" [value]="o">
+            {{ o }}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
       <ion-item>
         <ion-label>Illimité</ion-label>
         <ion-toggle name="unlimited" [(ngModel)]="unlimited"></ion-toggle>

@@ -43,7 +43,10 @@ export class ListPhonePage implements OnInit {
     .catch((e) => {
       this.loading = false;
     });
+    this.load();
+  }
 
+  load() {
     this.service.getPhones(this.id).then((output: Response) => {
       this.loading = false;
       if (output.etat === 'OK') {
@@ -59,9 +62,7 @@ export class ListPhonePage implements OnInit {
     this.loading = true;
     this.service.remove(this.id, id).then((output: Response) => {
       this.loading = false;
-      if (output.etat === 'OK' && output.data.length > 0) {
-        this.phones = output.data;
-      }
+      this.load();
     })
     .catch((e) => {
       this.loading = false;

@@ -14,6 +14,7 @@ export class ConnexionPage implements OnInit {
   loading: boolean;
   email: string;
   password: string;
+  hidden: boolean;
 
   constructor(
     private auth: AuthService,
@@ -23,6 +24,7 @@ export class ConnexionPage implements OnInit {
 
   ngOnInit() {
     this.loading = false;
+    this.hidden = true;
   }
 
   do() {

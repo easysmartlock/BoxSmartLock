@@ -13,7 +13,8 @@ export class BoxService {
     actionSuppressionTel: 'action_suppression_tel',
     actionAccess: 'access',
     actionDuration: 'duration',
-    actionListeTel: 'liste_tel'
+    actionListeTel: 'liste_tel',
+    actionSMS: 'sms'
   };
 
   constructor(
@@ -35,14 +36,25 @@ export class BoxService {
     }).toPromise();
   }
 
-  addPhone(id: string, unlimited: boolean, debut: any , fin: any , prefix: string, telephone: string): Promise<Response> {
+  addPhone(
+    nom: string,
+    id: string,
+    unlimited: boolean,
+    debut: any ,
+    fin: any ,
+    prefix: string,
+    telephone: string,
+    ordre: string): Promise<Response>
+  {
     return this.http.post<Response>(`${environment.apiUrl}/boxes/add-phone`, {
+      nom,
       id,
       unlimited,
       debut,
       fin,
       prefix,
-      telephone
+      telephone,
+      ordre
     }).toPromise();
   }
 
@@ -68,6 +80,17 @@ export class BoxService {
 
   getPhones(id: string): Promise<Response> {
     return this.http.get<Response>(`${environment.apiUrl}/boxes/phones?id=${id}`).toPromise();
+  }
+
+  editSMS(id: string , action: string): Promise<Response> {
+    return this.http.post<Response>(`${environment.apiUrl}/boxes/sms`, {
+      id,
+      action
+    }).toPromise();
+  }
+
+  getOrdre(id: string): Promise<Response> {
+    return this.http.get<Response>(`${environment.apiUrl}/boxes/ordre?id=${id}`).toPromise();
   }
 
 }

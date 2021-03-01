@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-menu-button slot="start"></ion-menu-button>
+    <div class="ion-text-center">
+      <img class="logo" src="/assets/images/logo.png" />
+    </div>
+    <ion-buttons slot="end">
+      V<app-ver></app-ver>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-progress-bar *ngIf="loading == true" type="indeterminate"></ion-progress-bar>
+  <div class="pt-3 px-2">
+    <h4>
+      Modifier mon profil
+    </h4>
+    <form #ap="ngForm">
+      <ion-item>
+        <ion-label position="stacked">
+          Nom
+        </ion-label>
+        <ion-input [(ngModel)]="data.nom" name="nom" required></ion-input>
+      </ion-item> 
+      <ion-item>
+        <ion-label position="stacked">
+          Prénom
+        </ion-label>
+        <ion-input [(ngModel)]="data.prenom" name="prenom" required></ion-input>
+      </ion-item> 
+      <ion-item>
+        <ion-label position="stacked">
+          Email
+        </ion-label>
+        <ion-input [(ngModel)]="data.email" name="email" required></ion-input>
+      </ion-item>
+      <div class="mt-5">
+        <ion-button [disabled]="ap.invalid" (click)="do()" expand="block" color="primary">
+          Modifier
+        </ion-button>
+      </div>   
+    </form>
+  </div>
+</ion-content>

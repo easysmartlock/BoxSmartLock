@@ -21,6 +21,9 @@ export class AddPhonePage implements OnInit {
   prefix: string;
   telephone: string;
   min: string;
+  position: string;
+  ordres: any[];
+  nom: string;
 
   constructor(
     private service: EasyService,
@@ -48,6 +51,14 @@ export class AddPhonePage implements OnInit {
     .catch((e) => {
 
     });
+    this.service.getOrdre(this.id).then((output: Response) => {
+      if (output.etat === 'OK') {
+        const data = output.data;
+        if (Object.keys(data).length > 0) {
+          this.ordres = data;
+        }
+      }
+    });
   }
 
   valide() {
@@ -59,19 +70,25 @@ export class AddPhonePage implements OnInit {
       this.alert.presentAlert('Erreur', '', 'Le numéro de téléphone ne doit pas commencé par 0');
       return;
     }
+    if (this.position === '') {
+      this.alert.presentAlert('Erreur', '', 'La position est requise');
+      return;
+    }
     this.loading = true;
     this.service.addPhone(
+      this.nom,
       this.id,
       this.unlimited,
       this.debut,
       this.fin,
       this.prefix,
-      this.telephone
+      this.telephone,
+      this.position
     ).then((output: Response) => {
       this.loading = false;
       if (output.etat === 'OK') {
         if (output.data === true) {
-          this.alert.presentAlert('Ajout', '', 'Numéro ajouté a la EasySmartLock');
+          this.alert.presentAlert('Ajout', '', 'Numéro ajouté a la Serrure');
         } else {
           this.alert.presentAlert('Erreur', '', 'Ajout annulé , une erreur est survenue');
         }
@@ -82,6 +99,9 @@ export class AddPhonePage implements OnInit {
       this.loading = false;
       this.alert.presentAlert('Erreur', '', 'Ajout annulé , une erreur est survenue');
     });
+
+
+
   }
 
 }

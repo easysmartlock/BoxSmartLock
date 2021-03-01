@@ -16,6 +16,7 @@ export class InscriptionPage implements OnInit {
   public password: string;
   public nom: string;
   public prenom: string;
+  public hidden: boolean;
 
   constructor(
     private authService: AuthService,
@@ -24,9 +25,11 @@ export class InscriptionPage implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.hidden = true;
   }
 
   ionViewWillEnter() {
+    this.hidden = true;
   }
 
   do() {
@@ -45,7 +48,7 @@ export class InscriptionPage implements OnInit {
           });
         }
       } else {
-        this.alert.presentAlert('Inscription', '', val.message);
+        this.alert.presentAlert('Inscription', '', val.message[0]);
       }
     })
     .catch((error) => {

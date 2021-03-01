@@ -13,14 +13,17 @@ import * as moment from 'moment';
 export class AddPhonePage implements OnInit {
 
   box: any;
-  loading: boolean = false;
+  loading = false;
   id: string;
-  unlimited: boolean = true;
+  unlimited = true;
   debut: any = new Date();
   fin: any = new Date();
   prefix: string;
   telephone: string;
   min: string;
+  position: string;
+  ordres: any[];
+  nom: string;
 
   constructor(
     private service: BoxService,
@@ -33,6 +36,8 @@ export class AddPhonePage implements OnInit {
   }
 
   ionViewDidEnter() {
+    this.ordres = [] ;
+    this.position = '' ;
     this.loading = true;
     this.box = null ;
     this.id = this.route.snapshot.paramMap.get('id');
@@ -48,6 +53,14 @@ export class AddPhonePage implements OnInit {
     .catch((e) => {
 
     });
+    this.service.getOrdre(this.id).then((output: Response) => {
+      if (output.etat === 'OK') {
+        const data = output.data;
+        if (Object.keys(data).length > 0) {
+          this.ordres = data;
+        }
+      }
+    });
   }
 
   valide() {
@@ -59,14 +72,20 @@ export class AddPhonePage implements OnInit {
       this.alert.presentAlert('Erreur', '', 'Le numéro de téléphone ne doit pas commencé par 0');
       return;
     }
+    if (this.position === '') {
+      this.alert.presentAlert('Erreur', '', 'La position est requise');
+      return;
+    }
     this.loading = true;
     this.service.addPhone(
+      this.nom,
       this.id,
       this.unlimited,
       this.debut,
       this.fin,
       this.prefix,
-      this.telephone
+      this.telephone,
+      this.position
     ).then((output: Response) => {
       this.loading = false;
       if (output.etat === 'OK') {

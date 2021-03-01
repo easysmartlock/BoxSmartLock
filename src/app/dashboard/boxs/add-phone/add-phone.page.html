@@ -5,7 +5,7 @@
       <img class="logo" src="/assets/images/logo.png" />
     </div>
     <ion-buttons slot="end">
-      V 1.0
+      V<app-ver></app-ver>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -14,19 +14,31 @@
   <ion-progress-bar *ngIf="loading == true" type="indeterminate"></ion-progress-bar>
   <div class="pt-3 px-2">
     <h3 *ngIf="box != null">
-      Ajouter un nouveau numéro sur le box #{{ box.id }} - {{ box.nom }}
+      Ajouter un nouveau numéro sur la box #{{ box.id }} - {{ box.nom }}
     </h3>
     <form #addPhone="ngForm" class="mt-4">
       <ion-item>
+        <ion-label position="floating">Nom de votre client</ion-label>
+        <ion-input required [(ngModel)]="nom" name="nom"></ion-input>
+      </ion-item>
+      <ion-item>
         <ion-label>Illimité</ion-label>
         <ion-toggle name="unlimited" [(ngModel)]="unlimited"></ion-toggle>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Choisir une position</ion-label>
+        <ion-select interface="popover" name="position" [(ngModel)]="position" required>
+          <ion-select-option *ngFor="let o of ordres" [value]="o">
+            {{ o }}
+          </ion-select-option>
+        </ion-select>
       </ion-item>
       <ion-item>
         <ion-label position="floating">Préfix pays (commencant par +)</ion-label>
         <ion-input required [(ngModel)]="prefix" name="prefix"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label position="floating">Numéros de téléphone (sans le 0)</ion-label>
+        <ion-label position="floating">Numéros de téléphone (sans le 0 et sans espace)</ion-label>
         <ion-input required [(ngModel)]="telephone" name="telephone"></ion-input>
       </ion-item>
       <ion-item *ngIf="unlimited == false">
@@ -37,7 +49,7 @@
         <ion-label>Fin</ion-label>
         <ion-datetime [min]="min" name="fin" [(ngModel)]="fin" display-format="DD/MM/YYYY HH:mm" placeholder="Choisir Date et heure"></ion-datetime>
       </ion-item>
-      <div class="mt-4">
+      <div class="mt-4" *ngIf="ordres && ordres.length > 0">
         <ion-button [disabled]="addPhone.invalid" (click)="valide()" expand="block">
           Enregistrer
         </ion-button>

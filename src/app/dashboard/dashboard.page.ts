@@ -42,7 +42,7 @@ export class DashboardPage implements OnInit {
           });
         });
         const actionSheet = await this.actionSheetController.create({
-          header: 'BoxSmartLock',
+          header: 'Box',
           cssClass: 'box-custom-class',
           buttons
         });
@@ -69,7 +69,7 @@ export class DashboardPage implements OnInit {
           });
         });
         const actionSheet = await this.actionSheetController.create({
-          header: 'SerrureSmartLock',
+          header: 'Serrure',
           cssClass: 'box-custom-class',
           buttons
         });

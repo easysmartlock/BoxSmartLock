@@ -16,4 +16,11 @@ export class UserService {
     return this.http.get<Response>(`${environment.apiUrl}/user`).toPromise();
   }
 
+  post(nom, prenom): Promise<Response> {
+    return this.http.post<Response>(`${environment.apiUrl}/user`, {
+      nom,
+      prenom
+    }).toPromise();
+  }
+
 }

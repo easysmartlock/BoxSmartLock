@@ -51,7 +51,7 @@ export class AccessPage implements OnInit {
         this.loading = false;
         if (output.etat === 'OK') {
           if (output.data === true) {
-            this.alert.presentAlert('Modification', '', 'Access modifier sur la BoxSmartLock');
+            this.alert.presentAlert('Modification', '', 'Access modifier sur la Box');
           } else {
             this.alert.presentAlert('Modification', '', 'Une erreur est survenue');
           }

@@ -1,5 +1,5 @@
 <ion-app>
-  <ion-menu side="start" menuId="first" contentId="main">
+  <ion-menu  side="start" menuId="first" contentId="main">
     <ion-header>
       <ion-toolbar>
         <ion-title>
@@ -10,23 +10,25 @@
     </ion-header>
     <ion-content>
       <ion-list>
-        <ion-item>
+        <ion-item (click)="close()" [routerLink]="['/dashboard']">
           <ion-icon name="home" slot="start"></ion-icon>
           Accueil
         </ion-item>
-        <ion-item>
+        <ion-item (click)="close()" [routerLink]="['/dashboard/profil']">
           <ion-icon name="person-outline" slot="start"></ion-icon>
           Mon compte
         </ion-item>
+        <!--
         <ion-item>
           <ion-icon name="rocket-outline" slot="start"></ion-icon>
           Automatiser
         </ion-item>
-        <ion-item>
+        -->
+        <ion-item target="_blank" href="https://bit.ly/ASSISTANTVIRTUELEASYSMARTLOCK">
           <ion-icon name="help-outline" slot="start"></ion-icon>
           Tuto
         </ion-item>
-        <ion-item>
+        <ion-item  href="mailto:contact@test.fr">
           <ion-icon name="mail-outline" slot="start"></ion-icon>
           Contact
         </ion-item>

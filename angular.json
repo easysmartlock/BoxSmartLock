@@ -37,9 +37,18 @@
               },
               {
                 "input": "src/global.scss"
+              },
+              {
+                "input": "SlideToUnlock/css/slideToUnlock.css"
+              },
+              {
+                "input": "SlideToUnlock/css/green.theme.css"
               }
             ],
-            "scripts": []
+            "scripts": [
+              "./node_modules/jquery/dist/jquery.min.js",
+              "./SlideToUnlock/js/jquery.slideToUnlock.js"
+            ]
           },
           "configurations": {
             "production": {

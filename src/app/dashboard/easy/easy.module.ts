@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { EasyPageRoutingModule } from './easy-routing.module';
 
 import { EasyPage } from './easy.page';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    EasyPageRoutingModule
+    EasyPageRoutingModule,
+    SharedModule
   ],
   declarations: [EasyPage]
 })

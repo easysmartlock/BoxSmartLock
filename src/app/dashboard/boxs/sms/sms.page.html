@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-menu-button slot="start"></ion-menu-button>
+    <div class="ion-text-center">
+      <img class="logo" src="/assets/images/logo.png" />
+    </div>
+    <ion-buttons slot="end">
+      V<app-ver></app-ver>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-progress-bar *ngIf="loading == true" type="indeterminate"></ion-progress-bar>
+  <div class="pt-3 px-2">
+    <h3 *ngIf="box != null">
+      Sms ouverture sur la box #{{ box.id }} - {{ box.nom }}
+    </h3>
+    <form #addPhone="ngForm" class="mt-4">
+      <ion-list>
+        <ion-radio-group name="action" [(ngModel)]="action">
+          <ion-item>
+            <ion-label>Activer les envoies SMS</ion-label>
+            <ion-radio slot="start" value="enable" required></ion-radio>
+          </ion-item>      
+          <ion-item>
+            <ion-label>Désactiver les envoies SMS</ion-label>
+            <ion-radio slot="start" value="disable" required></ion-radio>
+          </ion-item>
+        </ion-radio-group>
+      </ion-list>
+      <div class="mt-4">
+        <ion-button [disabled]="addPhone.invalid" (click)="valide()" expand="block">
+          Enregistrer
+        </ion-button>
+      </div>
+    </form>
+    <ion-button *ngIf="box" expand="block" class="mt-4" [routerLink]="['/dashboard/box/' + box.id ]">
+      Retour
+    </ion-button>
+  </div>
+</ion-content>

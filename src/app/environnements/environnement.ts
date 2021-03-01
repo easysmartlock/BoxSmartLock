@@ -1,4 +1,4 @@
 export const environment = {
     production: true,
-    apiUrl: 'http://smartlock.local/api'
+    apiUrl: 'https://smartlock.tk/api'
 };

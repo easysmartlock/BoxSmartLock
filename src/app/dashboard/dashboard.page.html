@@ -5,7 +5,7 @@
       <img class="logo" src="/assets/images/logo.png" />
     </div>
     <ion-buttons slot="end">
-      V 1.0
+      V<app-ver></app-ver>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -15,20 +15,20 @@
   <div class="pt-3 px-1">
     <ion-button class="mb-3" expand="block">
       <ion-icon name="add-outline"></ion-icon>
-      Ajouter une BoxSmartLock
+      Ajouter une Box
     </ion-button>
     <ion-button expand="block">
       <ion-icon name="add-outline"></ion-icon>
-      Ajouter une EasySmartLock
+      Ajouter une Serrure
     </ion-button>
 
     <div class="mt-3">
       <ion-button color="primary" expand="block"  (click)="listeBox()">
-        Voir mes BoxSmartLock
+        Voir mes Box
       </ion-button>
     </div>
     <div class="mt-3">
-      <ion-button color="primary" expand="block"  (click)="listeEasy()">Liste de vos EasySmartLock</ion-button>
+      <ion-button color="primary" expand="block"  (click)="listeEasy()">Liste de vos Serrures</ion-button>
     </div>
   </div>
 </ion-content>

@@ -51,7 +51,19 @@ const routes: Routes = [
   {
     path: 'easy/list-phone',
     loadChildren: () => import('./easies/list-phone/list-phone.module').then( m => m.ListPhonePageModule)
-  }
+  },
+  {
+    path: 'sms',
+    loadChildren: () => import('./boxs/sms/sms.module').then( m => m.SmsPageModule)
+  },
+  {
+    path: 'easy/sms',
+    loadChildren: () => import('./easies/sms/sms.module').then( m => m.SmsPageModule)
+  },
+  {
+    path: 'profil',
+    loadChildren: () => import('./profil/profil.module').then( m => m.ProfilPageModule)
+  },
 ];
 
 @NgModule({

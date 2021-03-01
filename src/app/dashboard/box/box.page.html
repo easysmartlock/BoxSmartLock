@@ -5,7 +5,7 @@
       <img class="logo" src="/assets/images/logo.png" />
     </div>
     <ion-buttons slot="end">
-      V 1.0
+      V<app-ver></app-ver>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -14,7 +14,7 @@
   <ion-progress-bar *ngIf="loading == true" type="indeterminate"></ion-progress-bar>
   <div class="pt-3 px-2">
     <h3 *ngIf="box != null">
-      BoxSmartLock #{{ box.id }} - {{ box.nom }}
+      Box #{{ box.id }} - {{ box.nom }}
     </h3>
     <div class="mt-4">
       <ion-label>Choisir une action</ion-label>
@@ -27,13 +27,18 @@
             Suppression numéro de téléphone
           </ion-select-option>
           <ion-select-option [value]="actions.actionAccess">
-            Modifier les accèss
+            Modifier les acces
           </ion-select-option>
+          <!--
           <ion-select-option [value]="actions.actionDuration">
             Modifier durée ouverture
           </ion-select-option>
+          -->
           <ion-select-option [value]="actions.actionListeTel">
             Liste des téléphones
+          </ion-select-option>
+          <ion-select-option [value]="actions.actionSMS">
+            SMS ouverture
           </ion-select-option>
         </ion-select>
       </ion-item>
@@ -42,6 +47,9 @@
       <ion-button (click)="valide()" expand="block"> 
         Valider
       </ion-button>
+    </div>
+    <div *ngIf="device && device.platform != 'web'" style="width:80%" class="mt-4 mx-auto">
+      <div id="divlock" style="width:100%;font-size:12px"></div>
     </div>
   </div>
 </ion-content>

@@ -55,14 +55,13 @@ export class EasyPage implements OnInit {
       this.router.navigate(['/dashboard/easy/duration/' + this.id]);
     }
     if (this.action === this.actions.actionListeTel) {
-      this.loading = true;
-      this.service.requestListPhone(this.id).then(() => {
-        this.loading = false;
-        this.router.navigate(['/dashboard/easy/list-phone/' + this.id]);
-      })
-      .catch((e) => {
-        this.loading = false;
-      });
+      this.router.navigate(['/dashboard/easy/list-phone/' + this.id]);
+    }
+    if (this.action === this.actions.actionSuppressionTel) {
+      this.router.navigate(['/dashboard/easy/list-phone/' + this.id]);
+    }
+    if (this.action === this.actions.actionSMS) {
+      this.router.navigate(['/dashboard/easy/sms/' + this.id]);
     }
   }
 

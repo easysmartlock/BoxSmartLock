@@ -5,7 +5,7 @@
       <img class="logo" src="/assets/images/logo.png" />
     </div>
     <ion-buttons slot="end">
-      V 1.0
+      V<app-ver></app-ver>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -19,9 +19,12 @@
 
     <ion-list>
       <ion-item *ngFor="let phone of phones">
-        <h3>
-          {{ phone.telephone == null ? 'Aucun' : phone.telephone }}
-        </h3>
+        <ion-label>
+          <h1>
+            {{ phone.telephone == null ? 'Aucun' : phone.telephone }}
+          </h1>
+          <h4>{{ phone.nom }}</h4>
+        </ion-label>
         <ion-button *ngIf="phone.telephone != null" slot="end" (click)="remove(phone.id)" color="danger">
           Supprimer
         </ion-button>

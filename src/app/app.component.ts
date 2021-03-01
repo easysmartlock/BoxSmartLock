@@ -36,6 +36,10 @@ export class AppComponent {
     });
   }
 
+  close() {
+    this.menu.close('first');
+  }
+
   logout() {
     this.menu.close('first');
     this.auth.clear().then(() => {

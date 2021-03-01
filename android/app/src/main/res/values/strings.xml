@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">EasySmartLock</string>
+    <string name="title_activity_main">EasySmartLock</string>
+    <string name="package_name">app.easysmartlock.fr</string>
+    <string name="custom_url_scheme">app.easysmartlock.fr</string>
+</resources>

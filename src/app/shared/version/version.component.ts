@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Plugins } from '@capacitor/core';
+
+const { Device } = Plugins;
+
 
 @Component({
   selector: 'app-version',
@@ -6,6 +10,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./version.component.scss'],
 })
 export class VersionComponent implements OnInit {
+
+  info: any;
 
   constructor() {
   }

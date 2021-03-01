@@ -2,6 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Response } from 'src/app/models/response.model';
 import { BoxService } from 'src/app/services/box.service';
+import { CallNumber } from '@ionic-native/call-number/ngx';
+import { Plugins } from '@capacitor/core';
+
+const { Device } = Plugins;
+declare var $: any;
 
 @Component({
   selector: 'app-box',
@@ -15,17 +20,23 @@ export class BoxPage implements OnInit {
   loading: boolean;
   actions: any = BoxService.actions;
   action: string;
+  device: any;
 
   constructor(
     private route: ActivatedRoute,
     private service: BoxService,
-    private router: Router
+    private router: Router,
+    private callNumber: CallNumber
   ) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+    const info = await Device.getInfo();
+    console.log(info);
+    this.device = info;    
   }
 
   ionViewDidEnter() {
+    this.buildSlide();
     this.loading = true;
     this.box = null ;
     this.id = this.route.snapshot.paramMap.get('id');
@@ -54,14 +65,32 @@ export class BoxPage implements OnInit {
       this.router.navigate(['/dashboard/duration/' + this.id]);
     }
     if (this.action === this.actions.actionListeTel) {
-      this.loading = true;
-      this.service.requestListPhone(this.id).then(() => {
-        this.loading = false;
-        this.router.navigate(['/dashboard/list-phone/' + this.id]);
-      })
-      .catch((e) => {
-        this.loading = false;
-      });
+      this.router.navigate(['/dashboard/list-phone/' + this.id]);
+    }
+    if (this.action === this.actions.actionSuppressionTel) {
+      this.router.navigate(['/dashboard/list-phone/' + this.id]);
+    }
+    if (this.action === this.actions.actionSMS) {
+      this.router.navigate(['/dashboard/sms/' + this.id]);
     }
   }
+
+
+  buildSlide() {
+    const doCall = this.doCall;
+    $('#divlock').slideToUnlock({
+      lockText: 'Glisser pour appeler la box!',
+      allowToLock: true,
+      unlockfn: doCall,
+      lockfn: doCall,
+      status: false
+    });
+  }
+
+  doCall =  () => {
+    this.callNumber.callNumber(this.box.telephone, true)
+      .then(res => console.log('Launched dialer!', res))
+      .catch(err => console.log('Error launching dialer', err));
+  }
+
 }

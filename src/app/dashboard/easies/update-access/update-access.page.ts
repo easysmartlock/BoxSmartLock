@@ -51,7 +51,7 @@ export class UpdateAccessPage implements OnInit {
         this.loading = false;
         if (output.etat === 'OK') {
           if (output.data === true) {
-            this.alert.presentAlert('Modification', '', 'Access modifier sur la EasySmartLock');
+            this.alert.presentAlert('Modification', '', 'Access modifier sur la Serrure');
           } else {
             this.alert.presentAlert('Modification', '', 'Une erreur est survenue');
           }

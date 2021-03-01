@@ -5,7 +5,7 @@
       <img class="logo" src="/assets/images/logo.png" />
     </div>
     <ion-buttons slot="end">
-      V 1.0
+      V<app-ver></app-ver>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -14,7 +14,7 @@
   <ion-progress-bar *ngIf="loading == true" type="indeterminate"></ion-progress-bar>
   <div class="pt-3 px-2">
     <h3 *ngIf="easy != null">
-      Editer accèss sur le easySmartBox #{{ easy.identifiant }} - {{ easy.nom }}
+      Editer accèss sur la serrure #{{ easy.identifiant }} - {{ easy.nom }}
     </h3>
     <form #addPhone="ngForm" class="mt-4">
       <ion-list>

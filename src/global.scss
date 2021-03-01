@@ -28,6 +28,12 @@
 /** boostrap utilities **/
 @import "~bootstrap/scss/bootstrap-utilities.scss";
 
+:root {
+    --ion-toolbar-background: #3880ff;
+    --ion-toolbar-color: #fff;
+}
+
+
 .w100 {
     width: 100% !important;
 }
